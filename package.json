@@ -1,0 +1,17 @@
+{
+    "name": "peashooters",
+    "version": "0.0.1",
+    "description": "a game where you control your squadron...with javascript",
+    "main": "main.js",
+    "scripts": {
+        "test": "electron .",
+        "start": "electron ."
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "electron": "latest",
+        "electron-packager": "latest"
+    },
+    "author": "Clocks-in-a-cooler",
+    "license": "MIT"
+}
