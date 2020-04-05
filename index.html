@@ -19,12 +19,43 @@
     <body>
         <canvas></canvas>
         <script>
+            function create_sprite(path) {
+                var img = document.createElement("img");
+                img.src = path;
+                return img;
+            }
+            
             const canvas = document.querySelector("canvas");
             canvas.width = 800, canvas.height = 600;
             
             const cxt = canvas.getContext("2d");
+            
+            const sprites = {
+                "airplane": create_sprite("assets/B-17.png"),
+            };
+            
+            const World    = require("./world.js");
+            const Airplane = require("./airplane.js");
+            
+            World.airplanes.push(new Airplane(300, 300));
+            
+            //you know the drill!
+            var last_time = null, lapse = 0;
+            function animate(time) {
+                lapse     = last_time == null ? 0 : time - last_time;
+                last_time = time;
+                
+                World.update(lapse);
+                World.draw(cxt, sprites);
+                
+                requestAnimationFrame(animate);
+            }
+            
+            requestAnimationFrame(animate);
+            
+            /*
             cxt.fillStyle = "steelblue";
-            cxt.fillRect(0, 0, 100, 100);
+            cxt.fillRect(0, 0, 100, 100);*/
         </script>
     </body>
 </html>
