@@ -7,7 +7,9 @@
         "test": "electron .",
         "start": "electron ."
     },
-    "dependencies": {},
+    "dependencies": {
+        "esprima": "latest"
+    },
     "devDependencies": {
         "electron": "latest",
         "electron-packager": "latest"

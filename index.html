@@ -14,10 +14,27 @@
                 width: 800px; height: 600px;
                 background-color: powderblue;
             }
+            
+            #open-file {
+                position: absolute;
+                top: 0; left: 0;
+                background-color: white;
+                margin: 5px;
+                border: 1px solid indianred;
+                color : indianred;
+                transition: background-color .75s, color .75s;
+            }
+            
+            #open-file:hover {
+                color: white;
+                background-color: indianred;
+                transition: background-color .75s, color .75s;
+            }
         </style>
     </head>
     <body>
         <canvas></canvas>
+        <button id="open-file">Use a file</button>
         <script>
             function create_sprite(path) {
                 var img = document.createElement("img");
@@ -37,7 +54,9 @@
             const World    = require("./world.js");
             const Airplane = require("./airplane.js");
             
-            World.airplanes.push(new Airplane(300, 300));
+            var a = new Airplane(300, 300);
+            
+            World.airplanes.push(a);
             
             //you know the drill!
             var last_time = null, lapse = 0;
@@ -45,17 +64,17 @@
                 lapse     = last_time == null ? 0 : time - last_time;
                 last_time = time;
                 
+                lapse = Math.min(100, lapse);
+                
                 World.update(lapse);
                 World.draw(cxt, sprites);
                 
                 requestAnimationFrame(animate);
             }
             
-            requestAnimationFrame(animate);
+            require("./player_ai.js")(document.getElementById("open-file"))(a);
             
-            /*
-            cxt.fillStyle = "steelblue";
-            cxt.fillRect(0, 0, 100, 100);*/
+            requestAnimationFrame(animate);
         </script>
     </body>
 </html>
