@@ -35,6 +35,10 @@
     <body>
         <canvas></canvas>
         <button id="open-file">Use a file</button>
+        <script src="misc_math.js"></script>
+        <script src="world.js"></script>
+        <script src="airplane.js"></script>
+        <script src="player_ai.js"></script>
         <script>
             function create_sprite(path) {
                 var img = document.createElement("img");
@@ -51,9 +55,6 @@
                 "airplane": create_sprite("assets/B-17.png"),
             };
             
-            const World    = require("./world.js");
-            const Airplane = require("./airplane.js");
-            
             var a = new Airplane(300, 300);
             
             World.airplanes.push(a);
@@ -67,13 +68,11 @@
                 lapse = Math.min(100, lapse);
                 
                 World.update(lapse);
-                World.draw(cxt, sprites);
+                World.draw(cxt);
                 
                 requestAnimationFrame(animate);
             }
-            
-            require("./player_ai.js")(document.getElementById("open-file"))(a);
-            
+                        
             requestAnimationFrame(animate);
         </script>
     </body>

@@ -14,8 +14,6 @@ function open_file() {
     main_process.select_file();
 }
 
-var airplane;
-
 //after the player selects a file
 ipc_renderer.on("file opened", (event, file, contents) => {
     console.log("opened: " + file);
@@ -26,18 +24,12 @@ ipc_renderer.on("file opened", (event, file, contents) => {
     } catch (error) {
         console.log();
         //notify the player
-        alert("syntax error in your file.");
+        alert("syntax error in your file.\n" + error.message);
         return;
     }
     
     //load the ai
-    airplane.ai = Function("me", contents);
+    World.airplanes[0].ai = Function("me", contents);
 });
 
-module.exports = function(button) {
-    button.addEventListener("click", open_file);
-    
-    return function(a) {
-        airplane = a;
-    }
-}
+document.getElementById("open-file").addEventListener("click", open_file);

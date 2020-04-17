@@ -1,6 +1,3 @@
-const World     = require("./world.js");
-const Misc_math = require("./misc_math.js");
-
 //airplane prototype... i had to make that joke.
 //base class for all airplanes in the game, includes all basic functionality
 function Airplane(x, y, ai) {
@@ -22,17 +19,27 @@ Airplane.prototype.thrust  = 0.003;
 Airplane.prototype.inertia = 0.009;
 Airplane.prototype.turning = (2 * Math.PI / 3) / 1000; // 120 degrees per second turning
 
+Airplane.prototype.radius = 32;
+
+Airplane.prototype.alliance = "neutral"; //in child classes, this will be either "player", "enemy", or "ally"
+//or whatever factions i come up with
+
 Airplane.prototype.simple_ai = function(me) {
     //fly in a circle
     me.turn("left");
 };
 
+Airplane.prototype.load_ai = function(new_ai) {
+    this.ai = new_ai;
+}
+
 Airplane.prototype.get_data = function() {
-    var a = this;
+    var a = this; //SCOPE IS JFPDSMUIOGPMHFSMLVJHAOFSJ;S,JVERDCA,NPO
     return {
         get x() { return a.x; },
         get y() { return a.y; },
         get angle() { return a.orientation; },
+        get alliance() { return a.alliance; },        
         
         //turn left and right
         turn: function(direction) {
@@ -70,7 +77,12 @@ Airplane.prototype.keep_in_bounds = function() {
 
 Airplane.prototype.update = function(lapse) {
     //give the ai a chance to update
-    this.ai(this.get_data());
+    try {
+        this.ai(this.get_data());
+    } catch (error) {
+        //i'll need to warn the player, especially if the error happens *every frame*
+    }
+    
     //update the direction based on what the ai did
     if (this.rotation == "left") {
         this.orientation -= this.turning * lapse;
@@ -94,4 +106,10 @@ Airplane.prototype.fire = function() {
     return; //override in child classes
 };
 
-module.exports = Airplane;
+Airplane.prototype.draw = function(cxt, offset) {
+    cxt.save();
+    cxt.translate(this.x - offset.x, this.y - offset.y);
+    cxt.rotate(this.orientation);
+    cxt.drawImage(sprites["airplane"], -32, -32, 64, 64);
+    cxt.restore();
+};
