@@ -1,0 +1,48 @@
+html, body {
+    position: absolute;
+    padding: 0; border: 0; margin: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+}
+
+canvas {
+    width: 800px; height: 600px;
+    background-color: powderblue;
+}
+
+#main_menu {
+    position: absolute;
+    bottom: 0px; right: 0px;
+    width: 400px; height: 300px;
+}
+
+.main_menu_button {
+    
+}
+
+#level_select {
+    padding: 0px;
+}
+
+.level_select_button {
+    width: 189px; height: 189px;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+#open-file {
+    position: absolute;
+    top: 0; left: 0;
+    background-color: white;
+    margin: 5px;
+    border: 1px solid indianred;
+    color : indianred;
+    transition: background-color .75s, color .75s;
+}
+
+#open-file:hover {
+    color: white;
+    background-color: indianred;
+    transition: background-color .75s, color .75s;
+}
+

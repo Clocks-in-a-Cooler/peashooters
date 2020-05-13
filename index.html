@@ -2,44 +2,20 @@
 <html>
     <head>
         <title>Peashooters!</title>
-        <style>
-            html, body {
-                position: absolute;
-                padding: 0; border: 0; margin: 0;
-                width: 100%; height: 100%;
-                overflow: hidden;
-            }
-            
-            canvas {
-                width: 800px; height: 600px;
-                background-color: powderblue;
-            }
-            
-            #open-file {
-                position: absolute;
-                top: 0; left: 0;
-                background-color: white;
-                margin: 5px;
-                border: 1px solid indianred;
-                color : indianred;
-                transition: background-color .75s, color .75s;
-            }
-            
-            #open-file:hover {
-                color: white;
-                background-color: indianred;
-                transition: background-color .75s, color .75s;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <canvas></canvas>
-        <button id="open-file">Use a file</button>
+        <div id="wrapper"></div>
+        <script src="setup.js"></script>
+        <script src="menus.js"></script>
+        <!-- <button id="open-file">Use a file</button> -->
+        <!--
+        <script src="sprites.js"></script>
         <script src="misc_math.js"></script>
         <script src="world.js"></script>
         <script src="airplane.js"></script>
-        <script src="player_ai.js"></script>
-        <script>
+        <script src="player_ai.js"></script>-->
+        <!-- <script>
             function create_sprite(path) {
                 var img = document.createElement("img");
                 img.src = path;
@@ -48,32 +24,13 @@
             
             const canvas = document.querySelector("canvas");
             canvas.width = 800, canvas.height = 600;
+            make_draggable(canvas);
             
             const cxt = canvas.getContext("2d");
             
             const sprites = {
                 "airplane": create_sprite("assets/B-17.png"),
             };
-            
-            var a = new Airplane(300, 300);
-            
-            World.airplanes.push(a);
-            
-            //you know the drill!
-            var last_time = null, lapse = 0;
-            function animate(time) {
-                lapse     = last_time == null ? 0 : time - last_time;
-                last_time = time;
-                
-                lapse = Math.min(100, lapse);
-                
-                World.update(lapse);
-                World.draw(cxt);
-                
-                requestAnimationFrame(animate);
-            }
-                        
-            requestAnimationFrame(animate);
-        </script>
+        </script> -->
     </body>
 </html>

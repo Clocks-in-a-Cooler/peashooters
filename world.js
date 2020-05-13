@@ -1,3 +1,5 @@
+//I should change this into a prototype thing, so I can create new world for every game. easier coding in the long run.
+
 const World = {
     get width() { return 2000; },
     get height() { return 1500; },
@@ -42,6 +44,14 @@ const World = {
         });
     },
     
+    load: function(data) {
+        
+    },
+    
+    start: function() {
+        
+    },
+    
     //more to come...
 };
 
@@ -84,17 +94,19 @@ const viewport = {
 var clicking = false;
 
 //makes the viewport draggable
-addEventListener("mousedown", (evt) => {
-    clicking = true;
-});
+function make_draggable(elt) {
+    elt.addEventListener("mousedown", (evt) => {
+        clicking = true;
+    });
 
-addEventListener("mouseup", (evt) => {
-    clicking = false;
-});
+    elt.addEventListener("mouseup", (evt) => {
+        clicking = false;
+    });
 
-addEventListener("mousemove", evt => {
-    if (clicking) {
-        viewport.translate(-evt.movementX, -evt.movementY);
-        //is it really this simple? Huh...
-    }
-});
+    elt.addEventListener("mousemove", evt => {
+        if (clicking) {
+            viewport.translate(-evt.movementX, -evt.movementY);
+            //is it really this simple? Huh...
+        }
+    });
+}

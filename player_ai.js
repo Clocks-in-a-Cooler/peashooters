@@ -32,4 +32,4 @@ ipc_renderer.on("file opened", (event, file, contents) => {
     World.airplanes[0].ai = Function("me", contents);
 });
 
-document.getElementById("open-file").addEventListener("click", open_file);
+//document.getElementById("open-file").addEventListener("click", open_file);
